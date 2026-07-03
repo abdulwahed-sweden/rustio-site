@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { SITE } from "@/lib/site";
+import { SITE, ogMeta } from "@/lib/site";
 import { Pipeline } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "rustio-draft",
   description:
     "rustio-draft turns a natural-language project brief into a safe schema.json for rustio-admin. AI drafts. RustIO validates. Diff protects. Human approves.",
+  alternates: { canonical: "/draft/" },
+  ...ogMeta("draft", "rustio-draft — from a sentence to a safe schema"),
 };
 
 export default function DraftPage() {

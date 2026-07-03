@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
-import { SITE } from "@/lib/site";
+import { SITE, structuredData } from "@/lib/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
@@ -16,7 +16,17 @@ export const metadata: Metadata = {
   applicationName: "RustIO",
   keywords: ["Rust", "business systems", "admin engine", "PostgreSQL", "rustio-admin", "operational software", "open source"],
   authors: [{ name: "Abdulwahed Mansour" }],
+  creator: "Abdulwahed Mansour",
+  publisher: "RustIO",
+  category: "technology",
   icons: { icon: "/favicon.svg" },
+  manifest: "/manifest.webmanifest",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   openGraph: {
     type: "website",
     url: SITE.url,
@@ -24,11 +34,13 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
     locale: "en_US",
+    images: [{ url: SITE.ogImage, width: 1200, height: 630, alt: "RustIO — a Rust-first business-system engine" }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.description,
+    images: [SITE.ogImage],
   },
 };
 
@@ -39,13 +51,10 @@ export const viewport: Viewport = {
 };
 
 // Runs before paint: apply saved theme + accent so there is no flash.
-const boot = `(function(){try{var d=document.documentElement,r=d.style;
+// Accent is just an attribute now — globals.css owns the per-theme shades.
+const boot = `(function(){try{var d=document.documentElement;
 d.setAttribute('data-theme',localStorage.getItem('rio-site-theme')||'dark');
-var a=localStorage.getItem('rio-site-accent'),
-M={Teal:{a:'#2FB6A0',a2:'#43C7B2',ink:'#4FD3BD',deep:'#1C8A78'},Azure:{a:'#3E8FD4',a2:'#5AA3E2',ink:'#72B4EC',deep:'#245C97'}};
-function g(h,l){h=h.replace('#','');return 'rgba('+parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16)+','+l+')';}
-if(a&&M[a]){var c=M[a];r.setProperty('--accent',c.a);r.setProperty('--accent-2',c.a2);r.setProperty('--accent-ink',c.ink);
-r.setProperty('--accent-deep',c.deep);r.setProperty('--accent-soft',g(c.a,.13));r.setProperty('--accent-line',g(c.a,.34));r.setProperty('--accent-glow',g(c.a,.16));}
+var a=localStorage.getItem('rio-site-accent');if(a){d.setAttribute('data-accent',a);}
 }catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -53,6 +62,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="dark" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
         <script dangerouslySetInnerHTML={{ __html: boot }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
+        />
         <div className="field-glow" aria-hidden="true" />
         <div className="field-grid" aria-hidden="true" />
         <Nav />

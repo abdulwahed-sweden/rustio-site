@@ -1,5 +1,10 @@
 # RustIO — marketing site
 
+### 🌐 Live site → **https://rustio-site.vercel.app**
+
+> Deployed on Vercel (free, auto-redeploys on every push to `main`).
+> Sponsoring RustIO? This is the project it funds — [become a sponsor](https://github.com/sponsors/abdulwahed-sweden).
+
 Premium marketing site for **RustIO** (`rustio-admin`) — a Rust-first business-system engine.
 Built with **Next.js (App Router) + TypeScript**, exported as a fully static site
 (`output: "export"`) with no backend, database, or API routes.
@@ -72,17 +77,22 @@ npx serve out        # preview the exported site locally
 
 ## Configuration
 
-Set the production domain in `lib/site.ts` → `SITE.url` (used by canonical URLs,
-Open Graph, sitemap, robots). Everything else is content in `lib/site.ts` and `components/Sections.tsx`.
+The canonical origin (used by canonical URLs, Open Graph, sitemap, robots) is a
+single environment variable — **no code change needed** to point at the real host:
 
-## Deploy — DigitalOcean App Platform (Static Site)
+```bash
+NEXT_PUBLIC_SITE_URL=https://rustio-site.vercel.app   # or your custom domain later
+```
 
-1. Push this repo to GitHub (`abdulwahed-sweden/rustio-site`).
-2. DigitalOcean → **Create → App Platform → GitHub** → pick the repo/branch (`main`).
-3. It detects Next.js. Set the component **Resource Type = Static Site** with:
-   - **Build command:** `npm run build`
-   - **Output directory:** `out`
-4. Deploy. You get a `*.ondigitalocean.app` URL immediately.
-5. (Optional) **Settings → Domains** → add your custom domain; update `SITE.url` and redeploy.
+It defaults to the Vercel URL for local builds (see `lib/site.ts`). Everything else
+is content in `lib/site.ts` and `components/Sections.tsx`.
 
-Static sites on App Platform build from the repo on every push to `main`.
+## Deploy — Vercel (recommended, free)
+
+1. **vercel.com** → sign in with GitHub → **Add New → Project** → import `rustio-site`.
+2. Vercel auto-detects Next.js — click **Deploy**. You get `https://rustio-site.vercel.app`.
+3. **Settings → Environment Variables** → add `NEXT_PUBLIC_SITE_URL` = your Vercel URL, then redeploy once.
+4. (Later) **Settings → Domains** → add a custom domain; update `NEXT_PUBLIC_SITE_URL` and redeploy.
+
+Vercel rebuilds from the repo on every push to `main`. (Any static host works too —
+`npm run build` emits `./out`.)

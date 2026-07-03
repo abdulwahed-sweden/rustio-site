@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { ogMeta } from "@/lib/site";
 import { Engine, CodeExample, Ecosystem } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "The engine",
   description:
     "Authority, sessions, recovery and audit — engineered as one system. RustIO treats the weight of production administrative work as first-class, not an afterthought.",
+  alternates: { canonical: "/engine/" },
+  ...ogMeta("engine", "The RustIO engine — a system engine, not another dashboard"),
 };
 
 export default function EnginePage() {

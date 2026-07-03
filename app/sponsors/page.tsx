@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { ogMeta } from "@/lib/site";
 import { Sponsors, Commercial } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "Sponsors",
   description:
     "Fund open Rust infrastructure for serious business systems. Sponsorship keeps the RustIO core free and inspectable — open core today, a commercial layer later.",
+  alternates: { canonical: "/sponsors/" },
+  ...ogMeta("sponsors", "Sponsor RustIO — back open Rust infrastructure"),
 };
 
 export default function SponsorsPage() {

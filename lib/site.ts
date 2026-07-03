@@ -1,6 +1,16 @@
-// Central site content + config. Update SITE.url to the production domain.
+import type { Metadata } from "next";
+
+// Central site content + config.
+// The canonical origin is the single source of truth for sitemap, robots,
+// canonical tags and structured data. Set NEXT_PUBLIC_SITE_URL in the deploy
+// environment (Vercel → Settings → Environment Variables) to the live URL, or
+// to a custom domain once bought — nothing else in the codebase needs to change.
+// The default matches the free Vercel URL so builds are correct without a domain.
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://rustio-site.vercel.app").replace(/\/+$/, "");
+
 export const SITE = {
-  url: "https://rustio.dev", // TODO: set to the real domain (DO gives a default *.ondigitalocean.app URL first)
+  url: SITE_URL,
+  ogImage: `${SITE_URL}/og/home.png`, // 1200×630 default social share card (per-page cards live in /og/*.png)
   name: "RustIO",
   title: "RustIO — A Rust-first foundation for serious business software",
   tagline: "A Rust-first business-system engine — the operational foundation for serious software.",
@@ -27,6 +37,65 @@ export const NAV_LINKS = [
   { label: "Sponsors", href: "/sponsors" },
   { label: "Docs", href: "/docs" },
 ] as const;
+
+// Schema.org JSON-LD graph — helps search engines understand the site,
+// the project, and the organization behind it (eligible for rich results).
+export function structuredData() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE.url}/#org`,
+        name: SITE.name,
+        url: SITE.url,
+        logo: `${SITE.url}/favicon.svg`,
+        description: SITE.tagline,
+        sameAs: [SITE.links.github, SITE.links.crates, SITE.links.docs],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE.url}/#website`,
+        url: SITE.url,
+        name: SITE.name,
+        description: SITE.description,
+        inLanguage: "en",
+        publisher: { "@id": `${SITE.url}/#org` },
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${SITE.url}/#software`,
+        name: "rustio-admin",
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Linux, macOS, Windows",
+        softwareVersion: SITE.version,
+        description: SITE.description,
+        url: SITE.url,
+        downloadUrl: SITE.links.crates,
+        softwareHelp: SITE.links.docs,
+        programmingLanguage: "Rust",
+        license: "https://opensource.org/licenses",
+        author: { "@id": `${SITE.url}/#org` },
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      },
+    ],
+  };
+}
+
+// Per-page social card. `slug` maps to /og/<slug>.png (see scripts/generate-og.mjs).
+// Keeps the shared OG fields so a page override doesn't drop siteName/locale.
+export function ogMeta(slug: string, alt: string): Metadata {
+  const src = `/og/${slug}.png`;
+  return {
+    openGraph: {
+      type: "website",
+      siteName: "RustIO",
+      locale: "en_US",
+      images: [{ url: src, width: 1200, height: 630, alt }],
+    },
+    twitter: { card: "summary_large_image", images: [src] },
+  };
+}
 
 export const ACCENTS = {
   Copper: { a: "#D2683B", a2: "#E07E4E", ink: "#EC8A56", deep: "#A6431F" },

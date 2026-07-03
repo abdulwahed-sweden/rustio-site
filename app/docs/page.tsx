@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { ogMeta } from "@/lib/site";
 import { Developers } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "Docs & links",
   description:
     "Install rustio-admin-cli, generate a project, and ship. Postgres only, no build step. Links to the GitHub repo, crates.io, docs.rs, releases, and examples.",
+  alternates: { canonical: "/docs/" },
+  ...ogMeta("docs", "RustIO docs — install, generate, ship"),
 };
 
 export default function DocsPage() {

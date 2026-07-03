@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { ogMeta } from "@/lib/site";
 import { Problem, Pipeline, NotDashboard } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "Why RustIO",
   description:
     "Most business systems rebuild the same foundation again and again. RustIO exists to stop that waste — a controlled, Rust-first engine for serious operational software.",
+  alternates: { canonical: "/why/" },
+  ...ogMeta("why", "Why RustIO exists — a new foundation for business software in Rust"),
 };
 
 export default function WhyPage() {

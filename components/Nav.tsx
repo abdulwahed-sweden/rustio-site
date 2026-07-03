@@ -9,26 +9,10 @@ import { GitHub, Moon, Sun } from "./Icons";
 
 type Theme = "dark" | "light";
 
-function rgba(hex: string, a: number) {
-  const h = hex.replace("#", "");
-  return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
-}
-
+// Accent is a [data-accent] attribute; globals.css resolves the correct
+// light/dark shade per theme, so this stays a single attribute toggle.
 function applyAccent(name: AccentName) {
-  const root = document.documentElement;
-  const vars = ["--accent", "--accent-2", "--accent-ink", "--accent-deep", "--accent-soft", "--accent-line", "--accent-glow"];
-  if (name === "Copper") {
-    vars.forEach((v) => root.style.removeProperty(v)); // Copper = CSS defaults
-    return;
-  }
-  const c = ACCENTS[name];
-  root.style.setProperty("--accent", c.a);
-  root.style.setProperty("--accent-2", c.a2);
-  root.style.setProperty("--accent-ink", c.ink);
-  root.style.setProperty("--accent-deep", c.deep);
-  root.style.setProperty("--accent-soft", rgba(c.a, 0.13));
-  root.style.setProperty("--accent-line", rgba(c.a, 0.34));
-  root.style.setProperty("--accent-glow", rgba(c.a, 0.16));
+  document.documentElement.setAttribute("data-accent", name);
 }
 
 export function Nav() {
