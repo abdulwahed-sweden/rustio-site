@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { SITE } from "@/lib/site";
 import { Nav } from "@/components/Nav";
@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1B1E23",
 };
 
 // Runs before paint: apply saved theme + accent so there is no flash.
