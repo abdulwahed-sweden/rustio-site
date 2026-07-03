@@ -74,10 +74,10 @@ const CARDS = [
   {
     slug: "docs",
     eyebrow: "For developers",
-    title: "Install,",
-    accent: "generate, ship.",
-    lead: "Install rustio-admin-cli, generate a project, and ship. Postgres only, no build step.",
-    pills: ["Postgres only", "No build step", "CLI"],
+    title: "Install, generate,",
+    accent: "review, ship.",
+    lead: "Install rustio-admin-cli, generate a project, and ship. Postgres only, no frontend build step.",
+    pills: ["Postgres only", "Single Rust binary", "CLI"],
   },
 ];
 

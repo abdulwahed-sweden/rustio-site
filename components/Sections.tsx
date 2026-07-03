@@ -44,7 +44,7 @@ export function Hero() {
           <span className="crate-chip"><b>rustio-admin</b> {SITE.version}</span>
           <span className="crate-chip"><b>rustio-admin-cli</b> binary</span>
           <span className="crate-chip">MIT licensed</span>
-          <span className="crate-chip">No build step</span>
+          <span className="crate-chip">Single Rust binary</span>
         </div>
       </div>
     </header>
@@ -332,7 +332,7 @@ export function Developers() {
       <div className="wrap">
         <div className="sec-head">
           <span className="eyebrow">For developers</span>
-          <h2>Install, generate, ship. Postgres only. No build step.</h2>
+          <h2>Install, generate, review, ship. Postgres only. No frontend build step.</h2>
         </div>
         <div className="dev-grid">
           <div className="dev-card">
