@@ -17,3 +17,6 @@ yarn-error.log*
 .env*.local
 .vercel
 *.tsbuildinfo
+
+# project-local npm cache (see .npmrc)
+/.npm-cache/

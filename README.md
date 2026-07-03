@@ -46,6 +46,21 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
+Then open **http://localhost:3000** in a browser.
+
+### Troubleshooting
+
+- **Don't open the HTML file directly** (e.g. double-clicking `out/index.html` →
+  `file://…`). The exported site uses absolute `/_next/…` asset paths that only
+  resolve over HTTP, so a `file://` open looks unstyled/broken. Use `npm run dev`,
+  or serve the build with `npx serve out`.
+- **`npm install` fails with "cache folder contains root-owned files"** — a known
+  macOS npm bug in the global `~/.npm` cache. This repo works around it with a
+  project-local cache (`.npmrc` → `cache=.npm-cache`), so `npm install` should just
+  work. To fix it globally instead: `sudo chown -R $(id -u):$(id -g) ~/.npm`.
+- **`next: command not found`** means `npm install` didn't complete — rerun it
+  (see the cache note above), then `npm run dev`.
+
 ## Build the static export
 
 ```bash
