@@ -41,6 +41,7 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
   manifest: '/manifest.webmanifest',
   alternates: { canonical: '/' },
+  verification: { google: 'pVFGyVTGO1Ri48eOQpZtKZgLf8Gkt0ktJzN9h06cUuI' },
   robots: {
     index: true,
     follow: true,
