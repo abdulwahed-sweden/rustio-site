@@ -1,6 +1,6 @@
 # RustIO — marketing site
 
-### 🌐 Live site → **https://rustio-site.vercel.app**
+### 🌐 Live site → **https://rustio.vercel.app**
 
 > Deployed on Vercel (free, auto-redeploys on every push to `main`).
 > Sponsoring RustIO? This is the project it funds — [become a sponsor](https://github.com/sponsors/abdulwahed-sweden).
@@ -81,7 +81,7 @@ The canonical origin (used by canonical URLs, Open Graph, sitemap, robots) is a
 single environment variable — **no code change needed** to point at the real host:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://rustio-site.vercel.app   # or your custom domain later
+NEXT_PUBLIC_SITE_URL=https://rustio.vercel.app   # or your custom domain later
 ```
 
 It defaults to the Vercel URL for local builds (see `lib/site.ts`). Everything else
@@ -90,7 +90,7 @@ is content in `lib/site.ts` and `components/Sections.tsx`.
 ## Deploy — Vercel (recommended, free)
 
 1. **vercel.com** → sign in with GitHub → **Add New → Project** → import `rustio-site`.
-2. Vercel auto-detects Next.js — click **Deploy**. You get `https://rustio-site.vercel.app`.
+2. Vercel auto-detects Next.js — click **Deploy**. You get `https://rustio.vercel.app`.
 3. **Settings → Environment Variables** → add `NEXT_PUBLIC_SITE_URL` = your Vercel URL, then redeploy once.
 4. (Later) **Settings → Domains** → add a custom domain; update `NEXT_PUBLIC_SITE_URL` and redeploy.
 

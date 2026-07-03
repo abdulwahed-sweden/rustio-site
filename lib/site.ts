@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 // environment (Vercel → Settings → Environment Variables) to the live URL, or
 // to a custom domain once bought — nothing else in the codebase needs to change.
 // The default matches the free Vercel URL so builds are correct without a domain.
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://rustio-site.vercel.app").replace(/\/+$/, "");
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://rustio.vercel.app").replace(/\/+$/, "");
 
 export const SITE = {
   url: SITE_URL,
