@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google'
+import { Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
 import { SITE, structuredData } from '@/lib/site'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
@@ -11,12 +12,7 @@ const display = Space_Grotesk({
   variable: '--nf-display',
   display: 'swap',
 })
-const body = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--nf-body',
-  display: 'swap',
-})
+// Geist (Vercel's typeface) via the official package; exposes --font-geist-sans.
 const mono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -101,7 +97,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={`${display.variable} ${GeistSans.variable} ${mono.variable}`}
     >
       <body>
         <script dangerouslySetInnerHTML={{ __html: boot }} />

@@ -81,8 +81,8 @@
 [data-theme="light"][data-accent="Azure"] {--accent:#1E6FB5;--accent-2:#185C9E;--accent-ink:#175FA6;--accent-deep:#124D82}
 
 :root{
-  --font-sans:var(--nf-body),system-ui,-apple-system,"Segoe UI",sans-serif;
-  --font-display:var(--nf-display),var(--nf-body),sans-serif;
+  --font-sans:var(--font-geist-sans),system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-display:var(--nf-display),var(--font-geist-sans),sans-serif;
   --font-mono:var(--nf-mono),ui-monospace,"SF Mono",Menlo,monospace;
   --maxw:1300px;
   --nar:900px;
