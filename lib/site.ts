@@ -5,8 +5,9 @@ import type { Metadata } from "next";
 // canonical tags and structured data. Set NEXT_PUBLIC_SITE_URL in the deploy
 // environment (Vercel → Settings → Environment Variables) to the live URL, or
 // to a custom domain once bought — nothing else in the codebase needs to change.
-// The default matches the free Vercel URL so builds are correct without a domain.
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://rustio.vercel.app").replace(/\/+$/, "");
+// The default is the production custom domain; set NEXT_PUBLIC_SITE_URL to
+// override it for preview/Vercel-URL builds.
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://rustio.dev").replace(/\/+$/, "");
 
 export const SITE = {
   url: SITE_URL,
