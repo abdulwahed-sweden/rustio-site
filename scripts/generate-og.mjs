@@ -29,6 +29,9 @@ const CHROME =
   process.env.CHROME ||
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
+// Footer label shown on every card. Switch to "rustio.dev" once the domain is live.
+const SITE_LABEL = "rustio.vercel.app";
+
 // One card per route. `title` renders in the heading color, `accent` in copper.
 const CARDS = [
   {
@@ -184,7 +187,7 @@ const html = (c, p) => `<!doctype html><html><head><meta charset="utf-8"/><style
     </div>
     <div class="bottom">
       <div class="pills">${c.pills.map((pill) => `<div class="pill">${esc(pill)}</div>`).join("")}</div>
-      <div class="url">rustio.dev</div>
+      <div class="url">${SITE_LABEL}</div>
     </div>
   </div>
 </body></html>`;
